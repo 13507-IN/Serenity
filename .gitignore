@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+instance/
+chat_history.db
+*.sqlite3

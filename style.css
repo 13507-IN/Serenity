@@ -1,0 +1,210 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --primary: #5B6ABF;
+  --primary-light: #E8EBFA;
+  --secondary: #FF7E7E;
+  --dark: #2E3A59;
+  --light: #F8FAFC;
+  --gray: #94A3B8;
+  --teal: #2DD4BF;
+  --success: #4ADE80;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== UTILITY CLASSES (Reusable) ===== */
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(91, 106, 191, 0.3);
+}
+
+.btn-primary:hover {
+  background: #4A5AB2;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-light);
+}
+
+/* ===== LANDING PAGE ===== */
+.landing-page {
+  background: linear-gradient(135deg, #F8FAFC 0%, #E8EBFA 100%);
+  min-height: 100vh;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.landing-page h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, var(--primary), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landing-features {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.landing-features li {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--primary-light);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ===== CHAT INTERFACE (index.html) ===== */
+.chat-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: white;
+  padding: 1.5rem;
+  border-right: 1px solid #E2E8F0;
+}
+
+.chat-container {
+  flex: 1;
+  padding: 2rem;
+  background: #F8FAFC;
+}
+
+#chat-box {
+  height: 70vh;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.user-message, .bot-message {
+  max-width: 70%;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.user-message {
+  background: var(--primary);
+  color: white;
+  margin-left: auto;
+}
+
+.bot-message {
+  background: white;
+  border: 1px solid #E2E8F0;
+}
+
+/* ===== AUTH PAGES (login.html & signup.html) ===== */
+.auth-page {
+  background: linear-gradient(135deg, #F8FAFC 0%, #E8EBFA 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-container {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  max-width: 450px;
+  width: 100%;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-group i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #E2E8F0;
+  border-radius: 0.75rem;
+}
+
+/* ===== PROFILE PAGE ===== */
+.profile-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.profile-header {
+  background: linear-gradient(135deg, var(--primary), #7C8CE4);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Serenity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #5B6ABF;
+      --primary-light: #E8EBFA;
+      --secondary: #FF7E7E;
+      --dark: #2E3A59;
+      --light: #F8FAFC;
+      --gray: #94A3B8;
+      --teal: #2DD4BF;
+      --success: #4ADE80;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #F8FAFC 0%, #E8EBFA 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .auth-page {
+      width: 100%;
+      padding: 2rem;
+    }
+    
+    .auth-container {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      max-width: 450px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .auth-container h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, var(--primary), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    #signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .input-group {
+      position: relative;
+      text-align: left;
+    }
+    
+    .input-group i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    #signup-form input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #E2E8F0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    #signup-form input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+      outline: none;
+    }
+    
+    .password-strength {
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    
+    .strength-meter {
+      height: 100%;
+      width: 0%;
+      background: var(--secondary);
+      transition: all 0.3s;
+    }
+    
+    #signup-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    #signup-form button:hover {
+      background: #4A5AB2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(91, 106, 191, 0.3);
+    }
+    
+    .auth-options {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+    
+    .auth-options a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .auth-options a:hover {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+    
+    .terms {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+    
+    .terms a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .terms a:hover {
+      text-decoration: underline;
+    }
+    
+    .error-message {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      text-align: left;
+      padding-left: 0.5rem;
+      display: none;
+    }
+    
+    .success-message {
+      color: var(--success);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      text-align: left;
+      padding-left: 0.5rem;
+      display: none;
+    }
+    
+    @media (max-width: 480px) {
+      .auth-container {
+        padding: 2rem 1.5rem;
+      }
+      
+      .auth-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      #signup-form {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2><i class="fas fa-leaf"></i> Create Account</h2>
+    
+    <form id="signup-form">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Enter your username" required />
+        <p class="error-message" id="username-error"></p>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Create a password" required />
+        <div class="password-strength">
+          <div class="strength-meter" id="strength-meter"></div>
+        </div>
+        <p class="error-message" id="password-error"></p>
+      </div>
+      
+      <div class="input-group">
+        <label for="confirm-password">Confirm Password</label>
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirm-password" placeholder="Re-enter your password" required />
+        <p class="error-message" id="confirm-error"></p>
+      </div>
+      
+      <p class="terms">By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></p>
+      
+      <button type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+      
+      <div class="auth-options">
+        <span>Already have an account? <a href="/login">Login</a></span>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        document.getElementById('confirm-error').textContent = "Passwords don't match";
+        document.getElementById('confirm-error').style.display = 'block';
+        return;
+      }
+      
+      // Validate password strength
+      if (password.length < 8) {
+        document.getElementById('password-error').textContent = "Password must be at least 8 characters";
+        document.getElementById('password-error').style.display = 'block';
+        return;
+      }
+
+      try {
+        const res = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        
+        if (data.success) {
+          // Show success message before redirect
+          const successElement = document.createElement('div');
+          successElement.className = 'success-message';
+          successElement.textContent = "Account created successfully! Redirecting...";
+          document.getElementById('signup-form').appendChild(successElement);
+          successElement.style.display = 'block';
+          
+          // Redirect after short delay
+          setTimeout(() => {
+            window.location.href = data.redirect || '/login';
+          }, 1500);
+        } else {
+          // Show specific error message if available
+          const errorField = data.field ? `${data.field}-error` : 'username-error';
+          document.getElementById(errorField).textContent = data.message || "Signup failed. Please try again.";
+          document.getElementById(errorField).style.display = 'block';
+        }
+      } catch (error) {
+        document.getElementById('username-error').textContent = "An error occurred. Please try again.";
+        document.getElementById('username-error').style.display = 'block';
+      }
+    });
+
+    // Password strength indicator
+    document.getElementById('password').addEventListener('input', function() {
+      const password = this.value;
+      const strengthMeter = document.getElementById('strength-meter');
+      let strength = 0;
+      
+      if (password.length >= 8) strength += 1;
+      if (password.match(/[a-z]/)) strength += 1;
+      if (password.match(/[A-Z]/)) strength += 1;
+      if (password.match(/[0-9]/)) strength += 1;
+      if (password.match(/[^a-zA-Z0-9]/)) strength += 1;
+      
+      const width = strength * 20;
+      strengthMeter.style.width = `${width}%`;
+      
+      if (width < 40) {
+        strengthMeter.style.background = 'var(--secondary)';
+      } else if (width < 80) {
+        strengthMeter.style.background = 'orange';
+      } else {
+        strengthMeter.style.background = 'var(--success)';
+      }
+    });
+
+    // Add focus styles dynamically
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.querySelector('i').style.color = 'var(--primary)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.querySelector('i').style.color = 'var(--gray)';
+      });
+    });
+  </script>
+</body>
+</html>

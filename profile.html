@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile | Serenity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #5B6ABF;
+      --primary-light: #E8EBFA;
+      --secondary: #FF7E7E;
+      --dark: #2E3A59;
+      --light: #F8FAFC;
+      --gray: #94A3B8;
+      --teal: #2DD4BF;
+      --success: #4ADE80;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #F8FAFC 0%, #E8EBFA 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    .profile-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .profile-header {
+      background: linear-gradient(135deg, var(--primary), #7C8CE4);
+      color: white;
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .profile-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .user-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: white;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 0 auto 1.5rem;
+      border: 4px solid var(--primary-light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .profile-content {
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .profile-box, .quote-box, .stats-box {
+      background: var(--light);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
+    
+    .profile-box {
+      grid-column: span 1;
+    }
+    
+    .stats-box {
+      grid-column: span 1;
+    }
+    
+    .quote-box {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--primary-light), #F0F4FF);
+      border-left: 4px solid var(--primary);
+    }
+    
+    .profile-box h2, .stats-box h2, .quote-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .profile-box p, .stats-box p {
+      margin-bottom: 0.75rem;
+      display: flex;
+    }
+    
+    .profile-box strong, .stats-box strong {
+      min-width: 120px;
+      color: var(--dark);
+    }
+    
+    .quote-box p {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    
+    .quote-box p::before, .quote-box p::after {
+      content: '"';
+      color: var(--primary);
+    }
+    
+    .last-message {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      border-left: 3px solid var(--teal);
+    }
+    
+    .profile-nav {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+      border-top: 1px solid #E2E8F0;
+      gap: 1.5rem;
+    }
+    
+    .profile-nav a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .profile-nav a:first-child {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .profile-nav a:first-child:hover {
+      background: #4A5AB2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(91, 106, 191, 0.3);
+    }
+    
+    .logout-btn {
+      background: white;
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+    
+    .logout-btn:hover {
+      background: #FFF0F0;
+      transform: translateY(-2px);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .stat-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    
+    @media (max-width: 768px) {
+      .profile-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile-box, .stats-box, .quote-box {
+        grid-column: span 1;
+      }
+      
+      .profile-header {
+        padding: 2rem 1.5rem;
+      }
+      
+      .profile-content {
+        padding: 1.5rem;
+      }
+      
+      .profile-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="user-avatar">{{ username[0].upper() }}</div>
+      <h1>Welcome, {{ username }} 👋</h1>
+      <p>Your Mental Wellness Journey</p>
+    </div>
+    
+    <div class="profile-content">
+      <div class="profile-box">
+        <h2>Profile Details</h2>
+        <p><strong>Username:</strong> {{ username }}</p>
+        <p><strong>Member Since:</strong> January 2025</p>
+        <p><strong>Last Active:</strong> Today</p>
+      </div>
+      
+      <div class="stats-box">
+        <h2>Your Activity</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">{{ message_count }}</div>
+            <div class="stat-label">Total Messages</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">14</div>
+            <div class="stat-label">Active Days</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Goals Achieved</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">🌟</div>
+            <div class="stat-label">Current Streak</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="quote-box">
+        <h3>🌟 Today's Inspiration</h3>
+        <p>Every day may not be good, but there is something good in every day.</p>
+        <p style="margin-top: 1rem; font-style: normal; font-size: 0.9rem;">— Alice Morse Earle</p>
+      </div>
+      
+      <div class="last-message">
+        <p><strong>Your Last Message:</strong></p>
+        <p>"{{ last_message }}"</p>
+      </div>
+    </div>
+    
+    <div class="profile-nav">
+      <a href="/chat"><i class="fas fa-comment-dots"></i> Continue Chatting</a>
+      <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+</body>
+</html>

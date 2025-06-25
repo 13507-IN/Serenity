@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Serenity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #5B6ABF;
+      --primary-light: #E8EBFA;
+      --secondary: #FF7E7E;
+      --dark: #2E3A59;
+      --light: #F8FAFC;
+      --gray: #94A3B8;
+      --teal: #2DD4BF;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #F8FAFC 0%, #E8EBFA 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .auth-page {
+      width: 100%;
+      padding: 2rem;
+    }
+    
+    .auth-container {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      max-width: 450px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .auth-container h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, var(--primary), var(--teal));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+    }
+    
+    #login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .input-group {
+      position: relative;
+    }
+    
+    .input-group i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+    
+    #login-form input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #E2E8F0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    #login-form input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+      outline: none;
+    }
+    
+    #login-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    
+    #login-form button:hover {
+      background: #4A5AB2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(91, 106, 191, 0.3);
+    }
+    
+    .auth-options {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+    
+    .auth-options a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .auth-options a:hover {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    
+    .divider::before {
+      margin-right: 1rem;
+    }
+    
+    .divider::after {
+      margin-left: 1rem;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .social-btn.google:hover {
+      background: #F1F1F1;
+    }
+    
+    .social-btn.facebook {
+      color: #1877F2;
+    }
+    
+    .social-btn.facebook:hover {
+      background: #E8F0FE;
+    }
+    
+    .error-message {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-top: -1rem;
+      text-align: left;
+      padding-left: 0.5rem;
+      display: none;
+    }
+    
+    @media (max-width: 480px) {
+      .auth-container {
+        padding: 2rem 1.5rem;
+      }
+      
+      .auth-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      #login-form {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2><i class="fas fa-leaf"></i> Welcome Back</h2>
+    
+    <form id="login-form">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username" required />
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      
+      <p class="error-message" id="error-message"></p>
+      
+      <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+      
+      <div class="auth-options">
+        <a href="/forgot-password">Forgot password?</a>
+        <span> • </span>
+        <span>Don't have an account? <a href="/signup">Sign up</a></span>
+      </div>
+      
+      <div class="divider">or</div>
+      
+      <div class="social-login">
+        <div class="social-btn google">
+          <i class="fab fa-google"></i>
+        </div>
+        <div class="social-btn facebook">
+          <i class="fab fa-facebook-f"></i>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorElement = document.getElementById('error-message');
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        
+        if (data.success) {
+          window.location.href = data.redirect || '/chat';
+        } else {
+          errorElement.textContent = data.message || "Invalid credentials!";
+          errorElement.style.display = 'block';
+          document.getElementById('password').value = '';
+        }
+      } catch (error) {
+        errorElement.textContent = "An error occurred. Please try again.";
+        errorElement.style.display = 'block';
+      }
+    });
+
+    // Add focus styles dynamically
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.querySelector('i').style.color = 'var(--primary)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.querySelector('i').style.color = 'var(--gray)';
+      });
+    });
+  </script>
+</body>
+</html>
